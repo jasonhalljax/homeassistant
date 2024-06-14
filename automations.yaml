@@ -1,0 +1,348 @@
+- id: Sunset Actions
+  alias: Sunset Actions
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -00:30:00
+  action:
+    service: switch.turn_on
+    entity_id:
+      - switch.in_wall_paddle_switch_5
+      - switch.plug_in_outdoor_switch_v2_500s
+      - switch.in_wall_paddle_switch_6
+
+- id: Front Lights Off
+  alias: Front Lights Off
+  trigger:
+    platform: sun
+    event: sunrise
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.in_wall_paddle_switch_6
+        - switch.in_wall_paddle_switch_5
+
+- id: Rear Patio Lights Off
+  alias: Rear Patio Lights Off
+  trigger:
+    - platform: time
+      at: "23:00:00"
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.plug_in_outdoor_switch_v2_500s
+
+- id: Pantry Light On
+  alias: Pantry Light On
+  trigger:
+    - entity_id: binary_sensor.4_in_1_sensor_home_security_motion_detection
+      platform: state
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.pantry_light_switch
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.pantry_light_switch
+
+- id: Pantry Light Off
+  alias: Pantry Light Off
+  trigger:
+    - entity_id: binary_sensor.4_in_1_sensor_home_security_motion_detection
+      platform: state
+      to: "off"
+      for:
+        minutes: 2
+  condition:
+    condition: state
+    entity_id: switch.pantry_light_switch
+    state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.pantry_light_switch
+
+- id: Master Closet Light On
+  alias: Master Closet Light On
+  trigger:
+    - entity_id: binary_sensor.4_in_1_sensor_motion_detection
+      platform: state
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.master_closet_light_3
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.master_closet_light_3
+
+- id: Master Closet Light Off
+  alias: Master Closet Light Off
+  trigger:
+    - entity_id: binary_sensor.4_in_1_sensor_motion_detection
+      platform: state
+      to: "off"
+      for:
+        minutes: 1
+  condition:
+    condition: state
+    entity_id: switch.master_closet_light_3
+    state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.master_closet_light_3
+
+- id: Master Bedroom Hallway Light On
+  alias: Master Bedroom Hallway Light On
+  trigger:
+    - entity_id: binary_sensor.master_bedroom_hallway_sensor_motion_detection_2
+      platform: state
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: light.master_bedroom_hallway_light_2
+      state: "off"
+    - condition: sun
+      before: sunrise
+      after: sunset
+  action:
+    - service: switch.turn_on
+      entity_id: light.master_bedroom_hallway_light_2
+      brightness_pct: 25
+
+- id: Master Bedroom Hallway Light Off
+  alias: Master Bedroom Hallway Light Off
+  trigger:
+    - entity_id: binary_sensor.master_bedroom_hallway_sensor_motion_detection_2
+      platform: state
+      to: "off"
+      for:
+        minutes: 2
+  condition:
+    condition: state
+    entity_id: light.master_bedroom_hallway_light_2
+    state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: light.master_bedroom_hallway_light_2
+
+- id: Text on sliding door open when away
+  alias: Text on sliding door open when away
+  trigger:
+    - entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_4
+      platform: state
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: device_tracker.iphonexsmax
+      state: not_home
+  action:
+    - service: notify.pushover
+      data:
+        title: Home Assistant
+        message: Sliding Door Opened
+        data:
+          target: YOUR_TARGET
+          sound: pianobar
+          priority: 0
+
+- id: Text on phone not home
+  alias: Text on phone not home
+  trigger:
+    - entity_id: device_tracker.iphone13promax
+      platform: state
+      to: not_home
+  action:
+    - service: notify.mobile_app_jasoniphone13
+      data:
+        message: HTML Phone shows as not_home
+  mode: single
+
+- id: Text on phone home
+  alias: Text on phone home
+  trigger:
+    - entity_id: device_tracker.iphone13promax
+      platform: state
+      to: home
+  action:
+    - service: notify.mobile_app_JasonIphone13
+      data:
+        message: Jason showing as home
+  mode: single
+
+- id: TEST Text on back door open
+  alias: TEST Text on back door open
+  trigger:
+    - entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_4
+      platform: state
+      to: "on"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.pantry_light_switch
+    - service: notify.mobile_app_JasonIphone13
+      data:
+        message: Jason showing as not home
+  mode: single
+
+- id: Notify on Garage Door Open
+  alias: Notify on Garage Door Open
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open
+      to: "on"
+  condition: []
+  action:
+    - service: notify.mobile_app_JasonIphone13
+      data:
+        message: Garage door opened
+  mode: single
+
+- id: Notify on Garage Interior Door Open Too Long
+  alias: Notify on Garage Interior Door Open Too Long
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open
+      to: "on"
+      for: 00:01:00
+  condition: []
+  action:
+    - service: notify.mobile_app_JasonIphone13
+      data:
+        message: Garage interior door left open
+  mode: single
+
+- id: Notify - Mailbox door opened
+  alias: Notify - Mailbox door opened
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_6
+      to: "on"
+  condition: []
+  action:
+    - service: notify.mobile_app_JasonIphone13
+      data:
+        message: Mailbox door opened
+  mode: single
+
+- id: Notify - Shed door opened
+  alias: Notify - Shed door opened
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_3
+      to: "on"
+  condition: []
+  action:
+    - service: notify.mobile_app_JasonIphone13
+      data:
+        message: Shed door opened
+  mode: single
+
+- id: Rear String Lights on Motion
+  alias: Rear String Lights on night motion
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.node_14_home_security_motion_detection
+      to: "on"
+  condition:
+    - condition: or
+      conditions:
+        - condition: time
+          after: "23:00:00"
+        - condition: sun
+          before: sunrise
+    - condition: state
+      entity_id: switch.plug_in_outdoor_switch_v2_500s
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.plug_in_outdoor_switch_v2_500s
+
+- id: Rear String Lights Off by Motion
+  alias: Rear String Lights Off by Motion
+  trigger:
+    - entity_id: binary_sensor.node_14_home_security_motion_detection
+      platform: state
+      to: "off"
+      for:
+        minutes: 2
+  condition:
+    - condition: or
+      conditions:
+        - condition: time
+          after: "23:00:00"
+        - condition: sun
+          before: sunrise
+    - condition: state
+      entity_id: switch.plug_in_outdoor_switch_v2_500s
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.plug_in_outdoor_switch_v2_500s
+
+- id: Front Entryway Lights on Motion
+  alias: Front Entryway Lights on motion
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_patio_sensor_motion_detection
+      to: "on"
+  condition:
+    - condition: or
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+    - condition: state
+      entity_id: switch.front_entryway_light
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.front_entryway_light
+
+- id: Front Entryway Light Off
+  alias: Front Entryway Light Off
+  trigger:
+    - entity_id: binary_sensor.front_patio_sensor_motion_detection
+      platform: state
+      to: "off"
+      for:
+        minutes: 2
+  condition:
+    condition: state
+    entity_id: switch.front_entryway_light
+    state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.front_entryway_light
+
+- id: Bedroom Fans On in Evening
+  alias: Bedroom Fans On in Evening
+  trigger:
+    - platform: time
+      at: "18:00:00"
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.master_bedroom_desk_fan
+    - service: fan.increase_speed
+      target:
+        entity_id: fan.in_wall_fan_speed_control_500s_2
+
+- id: Bedroom Fans Off in Morning
+  alias: Bedroom Fans Off in Morning
+  trigger:
+    - platform: time
+      at: "11:00:00"
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.master_bedroom_desk_fan
+    - service: fan.decrease_speed
+      target:
+        entity_id: fan.in_wall_fan_speed_control_500s_2
