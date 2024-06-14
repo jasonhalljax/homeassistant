@@ -126,64 +126,6 @@
     - service: switch.turn_off
       entity_id: light.master_bedroom_hallway_light_2
 
-- id: Text on sliding door open when away
-  alias: Text on sliding door open when away
-  trigger:
-    - entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_4
-      platform: state
-      to: "on"
-  condition:
-    - condition: state
-      entity_id: device_tracker.iphonexsmax
-      state: not_home
-  action:
-    - service: notify.pushover
-      data:
-        title: Home Assistant
-        message: Sliding Door Opened
-        data:
-          target: YOUR_TARGET
-          sound: pianobar
-          priority: 0
-
-- id: Text on phone not home
-  alias: Text on phone not home
-  trigger:
-    - entity_id: device_tracker.iphone13promax
-      platform: state
-      to: not_home
-  action:
-    - service: notify.mobile_app_jasoniphone13
-      data:
-        message: HTML Phone shows as not_home
-  mode: single
-
-- id: Text on phone home
-  alias: Text on phone home
-  trigger:
-    - entity_id: device_tracker.iphone13promax
-      platform: state
-      to: home
-  action:
-    - service: notify.mobile_app_JasonIphone13
-      data:
-        message: Jason showing as home
-  mode: single
-
-- id: TEST Text on back door open
-  alias: TEST Text on back door open
-  trigger:
-    - entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_4
-      platform: state
-      to: "on"
-  action:
-    - service: switch.turn_on
-      entity_id: switch.pantry_light_switch
-    - service: notify.mobile_app_JasonIphone13
-      data:
-        message: Jason showing as not home
-  mode: single
-
 - id: Notify on Garage Door Open
   alias: Notify on Garage Door Open
   description: ""
@@ -227,18 +169,27 @@
         message: Mailbox door opened
   mode: single
 
-- id: Notify - Shed door opened
-  alias: Notify - Shed door opened
+- id: Notify - Shed 1 door opened at night or when away
+  alias: Notify - Shed 1 door opened at night or when away
   description: ""
   trigger:
     - platform: state
       entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_3
       to: "on"
-  condition: []
+  condition:
+    - condition: or
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+        - condition: state
+          entity_id: device_tracker.iphone13promax
+          state: not_home
   action:
     - service: notify.mobile_app_JasonIphone13
       data:
-        message: Shed door opened
+        message: Shed 1 door opened
   mode: single
 
 - id: Rear String Lights on Motion
@@ -338,7 +289,7 @@
   alias: Bedroom Fans Off in Morning
   trigger:
     - platform: time
-      at: "11:00:00"
+      at: "10:00:00"
   action:
     - service: switch.turn_off
       target:
@@ -346,3 +297,65 @@
     - service: fan.decrease_speed
       target:
         entity_id: fan.in_wall_fan_speed_control_500s_2
+
+- id: Text on sliding door open when away
+  alias: Text on sliding door open when away
+  trigger:
+    - entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_4
+      platform: state
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: device_tracker.iphonexsmax
+      state: not_home
+  action:
+    - service: notify.pushover
+      data:
+        title: Home Assistant
+        message: Sliding Door Opened
+        data:
+          target: YOUR_TARGET
+          sound: pianobar
+          priority: 0
+
+# -----------------------------------------------------
+# OLD/OBSOLETE/TESTING
+# -----------------------------------------------------
+# - id: Text on phone not home
+#   alias: Text on phone not home
+#   trigger:
+#     - entity_id: device_tracker.iphone13promax
+#       platform: state
+#       to: not_home
+#   action:
+#     - service: notify.mobile_app_jasoniphone13
+#       data:
+#         message: HTML Phone shows as not_home
+#   mode: single
+
+# - id: Text on phone home
+#   alias: Text on phone home
+#   trigger:
+#     - entity_id: device_tracker.iphone13promax
+#       platform: state
+#       to: home
+#   action:
+#     - service: notify.mobile_app_JasonIphone13
+#       data:
+#         message: Jason showing as home
+#   mode: single
+
+# - id: TEST Text on back door open
+#   alias: TEST Text on back door open
+#   trigger:
+#     - entity_id: binary_sensor.z_wave_door_window_sensor_access_control_window_door_is_open_4
+#       platform: state
+#       to: "on"
+#   action:
+#     - service: switch.turn_on
+#       entity_id: switch.pantry_light_switch
+#     - service: notify.mobile_app_JasonIphone13
+#       data:
+#         message: Jason showing as not home
+#   mode: single
+
