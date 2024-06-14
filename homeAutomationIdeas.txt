@@ -1,1 +1,159 @@
+Smarthome Automation Ideas
 
+DONE
+Various outside lights turn on around sunset
+Outside lights turn off at various times overnight
+Pantry light turns on and off via motion detection
+Master Closet light turns on and off via motion detection
+Master Bedroom Hallway Light turns on and off via motion alerts at night
+Notification upon garage door opening
+Notification upon mailbox opening
+Notification upon shed 1 door opening if it's nighttime or I'm not at home
+Notification if garage interior door open too long
+Rear String Lights turns on and off via motion detection, at night
+Front Entryway Light turns on and off via motion detection
+Master Bedroom Fans turn off (or turn down) during the day
+
+ISSUES
+Main Rear Patio Fan Lights can't be on smart switch
+    Line switch box in bedroom doesn't have a neutral
+Laundry Room Lights can't be on a smart switch
+    Line box doesn't have a neutral
+
+
+FUTURE POSSIBILITIES
+Guest bath humidity detection for exhaust fan
+At night, if toilet door opens (or motion sense) turn on light at low level, then ramp up when door closes, turn off automatically
+Other than bedrooms, at night and pitch black, light on low upon movement
+During daytime, turn off lights if no movement if on for set time
+LED strip?
+Alert if garage door open >10 min
+Alert if door/window opened and away (everyone away)?
+If TV on, turn on living room lights at dusk
+Notify is commute time outside normal
+Battery reminder for sensor battery <25%, then again at 10% and 5%
+Auto lock front door at a certain time
+Auto lock front door after unlock for a certain time period
+Auto turn off entry way light after certain time period
+Turn off play room ceiling fan at certain time
+Upon motion detection in driveway at certain times via cameras, turn on floodlights
+Auto turn off guest bathroom fan
+Auto turn off rear flood lights
+
+* Turn lights on when somebody enters a room and off a while after the room is empty
+* Text me and/or my wife when the washer or dryer in our basement completes a cycle, but only texts us if we're home. If we're not home it waits until one of us arrives home and then texts whoever is home.
+* Texts me if a person is spotted on our front door or driveway webcam (using integration with SecuritySpy, whose motion detection of people vs. other motion is quite good), based on a schedule of my choosing. I can also enable/disable it remotely from my iPhone.
+* Automatically goes into a "vacation mode" if both my wife & I are away from the house for more than 12 hours, at which point lights throughout the house are turned off/on to simulate how we use them when we're actually home.
+* Texts me if a smoke detector goes off, and if one goes off at night it turns all the house lights on as well.
+* Turns off our water main if water is detected in the basement, and also texts me if that happens.
+* During the spring/summer/fall I have it water some of my wifes outdoor plants from rain barrels where we collect rainwater, but only if it's not raining.
+
+Away and vacation modes. Vacation cycles lights randomly at night
+
+Upon front porch motion, trigger dog barking
+
+Tilt or door sensor on washing machine lid. Alert if closed for an hour (cycle done)
+Alert if screen/shed door is open and rain begins
+
+—————
+DONE IP Ban
+DONE Max login attempts
+
+Hallway light turns on dimly from 5a - 530a (Matthew request)
+
+Text upon mailbox open (motion)
+Rear lights on upon sliding door open and motion, after lights normally go off
+Guest bath humidity detection for exhaust fan
+At night, if bathroom door opens (or motion sense) turn on light at low level, then ramp up when door closes, turn off automatically
+Other than bedrooms, at night and pitch black, light on low upon movement
+During daytime, turn off lights if no movement if on for set time
+LED strip?
+Alert if garage door open >10 min
+Alert if door/window opened and away (everyone away)?
+If TV on, turn on living room lights at dusk
+Notify is commute time outside normal
+Battery reminder for sensor battery <25%, then again at 10% and 5%
+Auto lock front door at a certain time
+Auto lock front door after unlock for a certain time period
+Auto turn off entry way light after certain time period
+Turn off play room ceiling fan at certain time
+Upon motion detection in driveway at certain times via cameras, turn on floodlights
+Auto turn off guest bathroom fan
+Auto turn off rear flood lights
+
+Turn lights on when somebody enters a room and off a while after the room is empty
+Text me and/or my wife when the washer or dryer in our basement completes a cycle, but only texts us if we're home. If we're not home it waits until one of us arrives home and then texts whoever is home.
+Texts me if a person is spotted on our front door or driveway webcam (using integration with SecuritySpy, whose motion detection of people vs. other motion is quite good), based on a schedule of my choosing. I can also enable/disable it remotely from my iPhone.
+Automatically goes into a "vacation mode" if both my wife & I are away from the house for more than 12 hours, at which point lights throughout the house are turned off/on to simulate how we use them when we're actually home.
+Texts me if a smoke detector goes off, and if one goes off at night it turns all the house lights on as well.
+Turns off our water main if water is detected in the basement, and also texts me if that happens.
+During the spring/summer/fall I have it water some of my wifes outdoor plants from rain barrels where we collect rainwater, but only if it's not raining.
+Music pauses on doorbell
+Ceiling fan speed adjustment based on temp
+Alerts on washer/dryer finish
+If both phones are charging at night, turn off bedroom light
+Turn on back overhead lights if open back door after dark
+If no one home, prompt to vacuum - if someone close to home, send to base
+Vacation mode - turn on and off random lights now and then, hvac to away mode
+Notification if garage door open more than 5 minutes
+
+DONE IP Ban
+DONE Max login attempts
+
+Hallway light turns on dimly from 5a - 530a (Matthew request)
+
+Text upon mailbox open (motion)
+Rear lights on upon sliding door open and motion, after lights normally go off
+Guest bath humidity detection for exhaust fan
+At night, if bathroom door opens (or motion sense) turn on light at low level, then ramp up when door closes, turn off automatically
+Other than bedrooms, at night and pitch black, light on low upon movement
+During daytime, turn off lights if no movement if on for set time
+LED strip?
+Alert if garage door open >10 min
+Alert if door/window opened and away (everyone away)?
+If TV on, turn on living room lights at dusk
+Notify is commute time outside normal
+Battery reminder for sensor battery <25%, then again at 10% and 5%
+Auto lock front door at a certain time
+Auto lock front door after unlock for a certain time period
+Auto turn off entry way light after certain time period
+Turn off play room ceiling fan at certain time
+Upon motion detection in driveway at certain times via cameras, turn on floodlights
+Auto turn off guest bathroom fan
+Auto turn off rear flood lights
+
+Turn lights on when somebody enters a room and off a while after the room is empty
+Text me and/or my wife when the washer or dryer in our basement completes a cycle, but only texts us if we're home. If we're not home it waits until one of us arrives home and then texts whoever is home.
+Texts me if a person is spotted on our front door or driveway webcam (using integration with SecuritySpy, whose motion detection of people vs. other motion is quite good), based on a schedule of my choosing. I can also enable/disable it remotely from my iPhone.
+Automatically goes into a "vacation mode" if both my wife & I are away from the house for more than 12 hours, at which point lights throughout the house are turned off/on to simulate how we use them when we're actually home.
+Texts me if a smoke detector goes off, and if one goes off at night it turns all the house lights on as well.
+Turns off our water main if water is detected in the basement, and also texts me if that happens.
+During the spring/summer/fall I have it water some of my wifes outdoor plants from rain barrels where we collect rainwater, but only if it's not raining.
+Music pauses on doorbell
+Ceiling fan speed adjustment based on temp
+Alerts on washer/dryer finish
+If both phones are charging at night, turn off bedroom light
+Turn on back overhead lights if open back door after dark
+If no one home, prompt to vacuum - if someone close to home, send to base
+Vacation mode - turn on and off random lights now and then, hvac to away mode
+Notification if garage door open more than 5 minutes
+
+Dashboards
+Show
+Commute times
+Next appointment, Hannah’s work, trash, etc
+Environmental sensors
+Lights
+Fans
+Unraid status
+Plex status
+Roomba status
+Sprinkler status
+Weather
+Presence
+Thermostat
+Dishwasher
+Cameras
+Sensor battery status
+Internet status
+Weather radar
