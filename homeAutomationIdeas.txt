@@ -5,7 +5,7 @@ Various outside lights turn on around sunset
 Outside lights turn off at various times overnight
 Pantry light turns on and off via motion detection
 Master Closet light turns on and off via motion detection
-Master Bedroom Hallway Light turns on and off via motion alerts at night
+Master Bedroom Hallway Light turns on and off via motion detection at night
 Notification upon garage door opening
 Notification upon mailbox opening
 Notification upon shed 1 door opening if it's nighttime or I'm not at home
